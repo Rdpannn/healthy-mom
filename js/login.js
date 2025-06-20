@@ -1,7 +1,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 // Ganti dengan URL live secara otomatis (support localhost dan GitHub Pages)
-const REDIRECT_URL = window.location.origin + window.location.pathname;
+const REDIRECT_URL = "https://rdpannn.github.io/healthy-mom/";
 
 const supabase = createClient(
   "https://qfxrlwnkvuyiaggftxgx.supabase.co",
