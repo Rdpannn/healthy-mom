@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Healthy Mom - Edukasi Kesehatan Ibu & Remaja</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      name="keywords"
+      content="kesehatan ibu, anemia, tablet FE, edukasi kesehatan, kebidanan, remaja, STIKes Widya Dharma Husada"
+    />
+    <meta
+      name="description"
+      content="Healthy Mom adalah website edukasi kesehatan ibu dan remaja, dikembangkan oleh mahasiswi DIII Kebidanan STIKes Widya Dharma Husada sebagai media pembelajaran seputar anemia, tablet FE, dan metode alami."
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://img.icons8.com/emoji/48/heart-with-pulse-emoji.png"
+      type="image/png"
+    />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#f7d5e7" />
+  </head>
+
+  <body>
+    <!-- Spinner Start -->
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+      <nav
+        class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+      >
+        <a href="" class="navbar-brand p-0">
+          <h1 class="text-primary">
+            <i class="fas fa-heartbeat me-3"></i>HealthyMom
+          </h1>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+        >
+          <span class="fa fa-bars"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto py-0">
+            <a href="index.html" class="nav-item nav-link active">Beranda</a>
+            <a href="buletin.html" class="nav-item nav-link">Buletin</a>
+
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                >Kalender Tablet FE</a
+              >
+              <div class="dropdown-menu m-0">
+                <a href="ceklis.html" class="dropdown-item">Ceklis Konsumsi</a>
+                <a href="kadarhb.html" class="dropdown-item"
+                  >Kadar Hemoglobin</a
+                >
+              </div>
+            </div>
+
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                >Melody Motion</a
+              >
+              <div class="dropdown-menu m-0">
+                <a href="video.html" class="dropdown-item">Video</a>
+                <a href="riwayat.html" class="dropdown-item">Riwayat</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Haii, Nama User -->
+          <div id="user-greeting" class="d-none me-4" style="display: none">
+            <div class="d-flex flex-column pe-3 border-end border-primary">
+              <span class="text-body">Hai,</span>
+              <span class="text-primary" id="user-name">Nama User</span>
+            </div>
+          </div>
+
+          <!-- Tombol Login / Sign Up - VISIBLE BY DEFAULT -->
+          <div id="auth-buttons" class="d-flex align-items-center gap-2">
+            <a
+              href="#"
+              id="login-btn"
+              class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
+              >Login</a
+            >
+            <a
+              href="#"
+              id="signup-btn"
+              class="btn btn-outline-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
+              >Sign Up</a
+            >
+          </div>
+
+          <!-- Tombol Logout - HIDDEN BY DEFAULT -->
+          <div id="logout-wrapper" class="d-none" style="display: none">
+            <button
+              id="logout-btn"
+              class="btn btn-outline-danger rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Carousel Start -->
+      <div class="carousel-header">
+        <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+          <ol class="carousel-indicators">
+            <li
+              data-bs-target="#carouselId"
+              data-bs-slide-to="0"
+              class="active"
+            ></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+              <img
+                src="img/carousel-1.jpg"
+                class="img-fluid w-100"
+                alt="Image"
+              />
+              <div class="carousel-caption-1">
+                <div
+                  class="carousel-caption-1-content"
+                  style="max-width: 900px"
+                >
+                  <h4
+                    class="text-white text-uppercase fw-bold mb-4 fadeInLeft animated"
+                  >
+                    Untuk Ibu Sehat
+                  </h4>
+                  <h1
+                    class="display-2 text-capitalize text-white mb-4 fadeInLeft animated"
+                  >
+                    Cek Konsumsi Tablet & Kadar HB
+                  </h1>
+                  <p class="mb-5 fs-5 text-white fadeInLeft animated">
+                    Platform edukasi dan pelacakan konsumsi tablet tambah darah
+                    serta video interaktif Melody Motion khusus ibu hamil dan
+                    menyusui.
+                  </p>
+                  <div
+                    class="carousel-caption-1-content-btn fadeInLeft animated"
+                  >
+                    <a
+                      class="btn btn-primary rounded-pill flex-shrink-0 py-3 px-5 me-2"
+                      href="login.html"
+                      >Login</a
+                    >
+                    <a
+                      class="btn btn-outline-light rounded-pill flex-shrink-0 py-3 px-5 ms-2"
+                      href="signup.html"
+                      >Sign Up</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <img
+                src="img/carousel-2.jpg"
+                class="img-fluid w-100"
+                alt="Image"
+              />
+              <div class="carousel-caption-2">
+                <div
+                  class="carousel-caption-2-content"
+                  style="max-width: 900px"
+                >
+                  <h4
+                    class="text-white text-uppercase fw-bold mb-4 fadeInRight animated"
+                  >
+                    Edukasi Buletin
+                  </h4>
+                  <h1
+                    class="display-2 text-capitalize text-white mb-4 fadeInRight animated"
+                  >
+                    Akses Info Kesehatan Ibu
+                  </h1>
+                  <p class="mb-5 fs-5 text-white fadeInRight animated">
+                    Dapatkan materi bergambar, penjelasan anemia, serta video
+                    hiburan edukatif melalui Melody Motion.
+                  </p>
+                  <div
+                    class="carousel-caption-2-content-btn fadeInRight animated"
+                  >
+                    <a
+                      class="btn btn-primary rounded-pill flex-shrink-0 py-3 px-5 me-2"
+                      href="login.html"
+                      >Login</a
+                    >
+                    <a
+                      class="btn btn-outline-light rounded-pill flex-shrink-0 py-3 px-5 ms-2"
+                      href="signup.html"
+                      >Sign Up</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselId"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon btn btn-primary"
+              aria-hidden="true"
+              ><i class="fa fa-angle-left fa-3x"></i
+            ></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselId"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon btn btn-primary"
+              aria-hidden="true"
+              ><i class="fa fa-angle-right fa-3x"></i
+            ></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <!-- Carousel End -->
+    </div>
+
+    <!-- Navbar & Hero End -->
+
+    <!-- feature Start -->
+    <div class="container-fluid feature bg-light py-5">
+      <div class="container py-5">
+        <div
+          class="text-center mx-auto pb-5 wow fadeInUp"
+          data-wow-delay="0.2s"
+          style="max-width: 800px"
+        >
+          <h4 class="text-uppercase text-primary">Fitur Kami</h4>
+          <h1 class="display-3 text-capitalize mb-3">
+            Dukung Ibu Lebih Sehat dan Bahagia
+          </h1>
+        </div>
+        <div class="row g-4">
+          <!-- Cek Konsumsi -->
+          <div
+            class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp"
+            data-wow-delay="0.2s"
+          >
+            <div class="feature-item p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-calendar-check text-white fa-3x"></i>
+              </div>
+              <a href="ceklis.html" class="h4 mb-3">Cek Konsumsi Harian</a>
+              <p class="mb-3">
+                Tandai konsumsi tablet tambah darah setiap hari agar tidak
+                terlewat. Jadwalkan dengan mudah dan pantau konsistensimu.
+              </p>
+              <a href="ceklis.html" class="btn text-primary">
+                Lihat Detail <i class="fa fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Kadar Hemoglobin -->
+          <div
+            class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp"
+            data-wow-delay="0.4s"
+          >
+            <div class="feature-item p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-tint text-white fa-3x"></i>
+              </div>
+              <a href="kadarhb.html" class="h4 mb-3">Catat Kadar Hemoglobin</a>
+              <p class="mb-3">
+                Simpan dan lacak hasil tes kadar HB kamu sebelum dan sesudah
+                konsumsi tablet FE, untuk bantu pantau kemajuan.
+              </p>
+              <a href="kadarhb.html" class="btn text-primary">
+                Lihat Detail <i class="fa fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Edukasi Buletin -->
+          <div
+            class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp"
+            data-wow-delay="0.6s"
+          >
+            <div class="feature-item p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-book-open text-white fa-3x"></i>
+              </div>
+              <a href="buletin.html" class="h4 mb-3">Edukasi Buletin</a>
+              <p class="mb-3">
+                Pelajari berbagai materi bergambar seputar anemia, nutrisi, dan
+                kehamilan. Disusun ringan dan mudah dipahami.
+              </p>
+              <a href="buletin.html" class="btn text-primary">
+                Lihat Buletin <i class="fa fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Video & Melody Motion -->
+          <div
+            class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp"
+            data-wow-delay="0.8s"
+          >
+            <div class="feature-item p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-video text-white fa-3x"></i>
+              </div>
+              <a href="video.html" class="h4 mb-3">Melody Motion</a>
+              <p class="mb-3">
+                Tonton video edukatif interaktif berisi gerakan ringan dan
+                informasi penting untuk ibu. Seru dan bermanfaat!
+              </p>
+              <a href="video.html" class="btn text-primary">
+                Lihat Video <i class="fa fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- feature End -->
+
+    <!-- About Start -->
+    <div class="container-fluid about overflow-hidden py-5">
+      <div class="container py-5">
+        <div class="row g-5">
+          <!-- Gambar -->
+          <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+            <div class="about-img rounded h-100">
+              <img
+                src="img/about.jpg"
+                class="img-fluid rounded h-100 w-100"
+                style="object-fit: cover"
+                alt="Tentang HealthyMom"
+              />
+              <div class="about-exp"><span>Komitmen Sejak 2020</span></div>
+            </div>
+          </div>
+
+          <!-- Konten -->
+          <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+            <div class="about-item">
+              <h4 class="text-primary text-uppercase">Tentang Kami</h4>
+              <h1 class="display-3 mb-3">
+                Media Edukasi dan Pemantauan Kesehatan Ibu
+              </h1>
+              <p class="mb-4">
+                HealthyMom adalah platform edukasi berbasis web yang
+                dikembangkan untuk membantu ibu hamil dan menyusui dalam
+                memantau konsumsi tablet tambah darah dan kadar hemoglobin,
+                sekaligus menyediakan materi informasi seputar anemia secara
+                visual dan interaktif.
+              </p>
+
+              <!-- Fitur 1 -->
+              <div class="bg-light rounded p-4 mb-4">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="d-flex">
+                      <div class="pe-4">
+                        <div
+                          class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                          style="width: 80px; height: 80px"
+                        >
+                          <i class="fas fa-user-check text-white fa-2x"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <a href="#" class="h4 d-inline-block mb-3"
+                          >Pendamping Pemantauan Kesehatan Ibu</a
+                        >
+                        <p class="mb-0">
+                          Platform ini membantu ibu melakukan pelacakan mandiri
+                          konsumsi tablet tambah darah harian dan catatan kadar
+                          hemoglobin secara berkala.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fitur 2 -->
+              <div class="bg-light rounded p-4 mb-4">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="d-flex">
+                      <div class="pe-4">
+                        <div
+                          class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                          style="width: 80px; height: 80px"
+                        >
+                          <i class="fas fa-heartbeat text-white fa-2x"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <a href="#" class="h4 d-inline-block mb-3"
+                          >Edukasi Anemia dan Nutrisi</a
+                        >
+                        <p class="mb-0">
+                          HealthyMom juga menyediakan materi visual yang mudah
+                          dipahami untuk meningkatkan pemahaman ibu mengenai
+                          pentingnya pencegahan anemia dan asupan gizi yang
+                          cukup selama kehamilan dan menyusui.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <a href="#" class="btn btn-secondary rounded-pill py-3 px-5"
+                >Selengkapnya</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About End -->
+
+    <!-- Team Start -->
+    <div class="container-fluid team pb-5">
+      <div class="container pb-5">
+        <div
+          class="text-center mx-auto pb-5 wow fadeInUp"
+          data-wow-delay="0.2s"
+          style="max-width: 800px"
+        >
+          <h4 class="text-uppercase text-primary">Tim Pengembang</h4>
+          <h1 class="display-3 text-capitalize mb-3">
+            Kolaborasi Mahasiswi Kebidanan untuk Edukasi Kesehatan Ibu
+          </h1>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <!-- TIM 1 -->
+          <div
+            class="col-md-6 col-lg-5 col-xl-4 wow fadeInUp"
+            data-wow-delay="0.2s"
+          >
+            <div class="team-item p-4">
+              <div class="team-inner rounded">
+                <div class="team-img">
+                  <img
+                    src="img/team-1.jpg"
+                    class="img-fluid rounded-top w-100"
+                    alt="Riswanti Arosyid"
+                  />
+                  <div class="team-icon rounded-pill py-2 px-2">
+                    <a
+                      class="btn btn-secondary btn-sm-square rounded-pill mx-1"
+                      href="https://instagram.com/wantiiiiii_"
+                      target="_blank"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                    <a
+                      class="btn btn-secondary btn-sm-square rounded-pill mx-1"
+                      href="https://wa.me/6283805483556"
+                      target="_blank"
+                      ><i class="fab fa-whatsapp"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="bg-light rounded-bottom text-center py-4">
+                  <h4 class="mb-2">Riswanti Arosyid</h4>
+                  <p class="mb-0">Mahasiswi Kebidanan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIM 2 -->
+          <div
+            class="col-md-6 col-lg-5 col-xl-4 wow fadeInUp"
+            data-wow-delay="0.4s"
+          >
+            <div class="team-item p-4">
+              <div class="team-inner rounded">
+                <div class="team-img">
+                  <img
+                    src="img/team-2.jpg"
+                    class="img-fluid rounded-top w-100"
+                    alt="Mutiara"
+                  />
+                  <div class="team-icon rounded-pill py-2 px-2">
+                    <a
+                      class="btn btn-secondary btn-sm-square rounded-pill mx-1"
+                      href="https://instagram.com/tiy.araaa_"
+                      target="_blank"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                    <a
+                      class="btn btn-secondary btn-sm-square rounded-pill mx-1"
+                      href="https://wa.me/6285697885795"
+                      target="_blank"
+                      ><i class="fab fa-whatsapp"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="bg-light rounded-bottom text-center py-4">
+                  <h4 class="mb-2">Mutiara</h4>
+                  <p class="mb-0">Mahasiswi Kebidanan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Team End -->
+
+    <!-- Footer Start -->
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+      <div class="container py-5">
+        <div class="row g-5 mb-5">
+          <div class="col-lg-6">
+            <h3 class="text-white mb-4">
+              <i class="fas fa-heartbeat text-primary me-2"></i>Healthy Mom
+            </h3>
+            <p class="text-white">
+              Website ini dikembangkan sebagai media edukasi kesehatan ibu dan
+              remaja, dalam rangka penyusunan tugas akhir oleh mahasiswa:
+            </p>
+            <ul class="text-white ps-3">
+              <li>Riswanti Arosyid – Mahasiswi DIII Kebidanan</li>
+              <li>Mutiara – Mahasiswi DIII Kebidanan</li>
+            </ul>
+            <p class="text-white mb-0">
+              Website ini memuat informasi seputar anemia, konsumsi tablet FE,
+              serta edukasi metode alami, ditujukan untuk meningkatkan
+              pengetahuan masyarakat.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <h4 class="text-white mb-4">Informasi Kampus</h4>
+            <p class="mb-2 text-white">
+              <i class="fa fa-university me-2"></i>STIKes Widya Dharma Husada
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fa fa-map-marker-alt me-2"></i>Jl. H. Ibrahim No.40A,
+              Cibabat, Cimahi Utara, Kota Cimahi, Jawa Barat 40513
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fas fa-graduation-cap me-2"></i>Program Studi DIII
+              Kebidanan
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fa fa-envelope me-2"></i>info@stikeswdh.ac.id
+            </p>
+            <p class="mb-0 text-white">
+              <i class="fa fa-globe me-2"></i
+              ><a
+                href="https://stikeswdh.ac.id"
+                class="text-white"
+                target="_blank"
+                >www.stikeswdh.ac.id</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row text-white">
+          <div class="col-12 text-center">
+            <small>
+              Untuk pertanyaan lebih lanjut mengenai konten edukasi atau
+              kolaborasi, silakan hubungi tim pengembang melalui kontak yang
+              tersedia.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4 bg-dark">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-12 text-center">
+            <span class="text-white">
+              © 2025 <strong>Riswanti Arosyid</strong> &
+              <strong>Mutiara</strong> – Mahasiswi DIII Kebidanan <br />STIKes
+              Widya Dharma Husada, Cimahi – All rights reserved.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Copyright End -->
+
+    <!-- Back to Top -->
+    <a
+      href="#"
+      class="btn btn-secondary btn-lg-square rounded-circle back-to-top"
+      ><i class="fa fa-arrow-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script type="module" src="js/login.js"></script>
+  </body>
+</html>

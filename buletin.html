@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Healthy Mom - Buletin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      name="keywords"
+      content="kesehatan ibu, anemia, tablet FE, edukasi kesehatan, kebidanan, remaja, STIKes Widya Dharma Husada"
+    />
+    <meta
+      name="description"
+      content="Healthy Mom adalah website edukasi kesehatan ibu dan remaja, dikembangkan oleh mahasiswi DIII Kebidanan STIKes Widya Dharma Husada sebagai media pembelajaran seputar anemia, tablet FE, dan metode alami."
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://img.icons8.com/emoji/48/heart-with-pulse-emoji.png"
+      type="image/png"
+    />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#f7d5e7" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Spinner Start -->
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+      <!-- Navbar Start -->
+      <nav
+        class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+      >
+        <a href="" class="navbar-brand p-0">
+          <h1 class="text-primary">
+            <i class="fas fa-heartbeat me-3"></i>HealthyMom
+          </h1>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+        >
+          <span class="fa fa-bars"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto py-0">
+            <a href="index.html" class="nav-item nav-link">Beranda</a>
+            <a href="buletin.html" class="nav-item nav-link active">Buletin</a>
+
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                >Kalender Tablet FE</a
+              >
+              <div class="dropdown-menu m-0">
+                <a href="ceklis.html" class="dropdown-item">Ceklis Konsumsi</a>
+                <a href="kadarhb.html" class="dropdown-item"
+                  >Kadar Hemoglobin</a
+                >
+              </div>
+            </div>
+
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                >Melody Motion</a
+              >
+              <div class="dropdown-menu m-0">
+                <a href="video.html" class="dropdown-item">Video</a>
+                <a href="riwayat.html" class="dropdown-item">Riwayat</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Haii, Nama User -->
+          <div id="user-greeting" class="d-none me-4" style="display: none">
+            <div class="d-flex flex-column pe-3 border-end border-primary">
+              <span class="text-body">Hai,</span>
+              <span class="text-primary" id="user-name">Nama User</span>
+            </div>
+          </div>
+
+          <!-- Tombol Login / Sign Up -->
+          <div id="auth-buttons" class="d-flex align-items-center gap-2">
+            <a
+              href="#"
+              id="login-btn"
+              class="btn btn-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
+              >Login</a
+            >
+            <a
+              href="#"
+              id="signup-btn"
+              class="btn btn-outline-primary rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
+              >Sign Up</a
+            >
+          </div>
+
+          <!-- Tombol Logout -->
+          <div id="logout-wrapper" class="d-none" style="display: none">
+            <button
+              id="logout-btn"
+              class="btn btn-outline-danger rounded-pill d-inline-flex flex-shrink-0 py-2 px-4"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <!-- Hero Section Start -->
+      <div class="position-relative" style="height: 700px">
+        <img
+          src="img/anemia.jpg"
+          class="img-fluid w-100 h-100 object-fit-cover"
+          style="object-fit: cover"
+          alt="Hero Image"
+        />
+        <div
+          class="position-absolute top-0 start-0 w-100 h-100"
+          style="background-color: rgba(0, 0, 0, 0.5)"
+        ></div>
+
+        <div
+          class="position-absolute top-50 start-50 translate-middle text-center text-white px-3"
+          style="max-width: 900px"
+        >
+          <h4 class="text-white text-uppercase fw-bold mb-4">
+            Edukasi Buletin
+          </h4>
+          <h1 class="text-white display-2 text-capitalize mb-4">
+            Akses Video Edukasi Anemia
+          </h1>
+
+          <p class="mb-5 fs-5">
+            Tonton video informatif tentang pentingnya tablet tambah darah untuk
+            ibu hamil.
+          </p>
+          <button
+            id="play-video-btn"
+            class="btn btn-primary rounded-pill py-3 px-5"
+          >
+            <i class="fa fa-play me-2"></i>Play Video
+          </button>
+        </div>
+      </div>
+      <!-- Hero Section End -->
+
+      <!-- Video Modal -->
+      <div id="video-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content bg-dark border-0">
+            <div class="modal-body p-0 position-relative">
+              <button
+                type="button"
+                class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+              <video id="educational-video" class="w-100 h-auto" controls>
+                <source
+                  src="https://qfxrlwnkvuyiaggftxgx.supabase.co/storage/v1/object/public/fotovideo//video%20edukasi%20anemia.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar & Hero End -->
+
+    <!-- Edukasi Anemia Start -->
+    <div class="container-fluid bg-light py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h4 class="text-primary text-uppercase">EDUKASI ANEMIA</h4>
+          <h1 class="display-5">Pahami Anemia Pada Ibu Hamil</h1>
+          <p class="fs-5 text-muted">
+            Informasi edukatif berdasarkan buletin STIKes Widya Dharma Husada,
+            2025
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- 1. Apa itu Anemia -->
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div
+              class="bg-white p-4 rounded shadow-sm d-flex flex-column text-center h-100"
+            >
+              <div class="mb-3">
+                <i class="fas fa-droplet fa-bounce text-danger fa-3x"></i>
+              </div>
+              <h5 class="text-dark fw-bold mb-2">Apa Itu Anemia?</h5>
+              <p class="small mb-0">
+                Anemia adalah kelainan darah akibat rendahnya jumlah sel darah
+                merah atau kadar hemoglobin dalam tubuh. Kondisi ini dapat
+                menyebabkan tubuh menjadi lemas, cepat lelah, dan kurang
+                konsentrasi.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. Anemia dalam Kehamilan -->
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="bg-white p-4 rounded shadow-sm h-100 text-center">
+              <div class="mb-3">
+                <i class="fas fa-baby fa-beat text-pink fa-3x"></i>
+              </div>
+              <h5 class="text-dark fw-bold mb-2">Anemia dalam Kehamilan</h5>
+              <p class="small mb-0">
+                Ibu hamil dikatakan anemia bila kadar hemoglobin kurang dari 11
+                g% pada trimester I dan III, atau kurang dari 10,5 g% pada
+                trimester II. Anemia dalam kehamilan harus segera ditangani
+                untuk mencegah komplikasi.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. Tablet Tambah Darah -->
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="bg-white p-4 rounded shadow-sm h-100 text-center">
+              <div class="mb-3">
+                <i class="fas fa-pills fa-shake text-primary fa-3x"></i>
+              </div>
+              <h5 class="text-dark fw-bold mb-2">Tablet Tambah Darah</h5>
+              <p class="small mb-0">
+                Tablet tambah darah mengandung 60mg zat besi dan 0.25mg asam
+                folat. Suplemen ini wajib dikonsumsi minimal 90 tablet selama
+                kehamilan untuk mencegah anemia.
+              </p>
+            </div>
+          </div>
+
+          <!-- 4. Kapan Minum Tablet FE -->
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
+            <div class="bg-white p-4 rounded shadow-sm h-100 text-center">
+              <div class="mb-3">
+                <i class="fas fa-clock fa-spin text-warning fa-3x"></i>
+              </div>
+              <h5 class="text-dark fw-bold mb-2">Kapan Minum Tablet FE?</h5>
+              <p class="small mb-0">
+                Tablet tambah darah sebaiknya dikonsumsi sebelum makan atau
+                sebelum tidur malam. Hindari teh, kopi, dan susu karena bisa
+                menghambat penyerapan zat besi dalam tubuh.
+              </p>
+            </div>
+          </div>
+
+          <!-- 5. Efek Samping Anemia -->
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="bg-white p-4 rounded shadow-sm h-100 text-center">
+              <div class="mb-3">
+                <i
+                  class="fas fa-triangle-exclamation fa-beat-fade text-danger fa-3x"
+                ></i>
+              </div>
+              <h5 class="text-dark fw-bold mb-2">Efek Samping Anemia</h5>
+              <p class="small mb-0">
+                Jika tidak ditangani, anemia pada ibu hamil bisa menyebabkan
+                keguguran, bayi lahir prematur, hingga kematian. Anemia juga
+                meningkatkan risiko perdarahan dan infeksi selama persalinan
+                (Indah, 2019).
+              </p>
+            </div>
+          </div>
+
+          <!-- 6. Gejala & Pencegahan -->
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
+            <div class="bg-white p-4 rounded shadow-sm h-100 text-center">
+              <div class="mb-3">
+                <i class="fas fa-shield-heart fa-fade text-success fa-3x"></i>
+              </div>
+              <h5 class="text-dark fw-bold mb-2">Gejala & Pencegahan</h5>
+              <p class="small mb-0">
+                Gejala anemia antara lain lemah, letih, lesu, loyo, dan lunglai
+                (5L). Pencegahan bisa dilakukan dengan konsumsi makanan bergizi,
+                tablet tambah darah rutin, dan pemeriksaan kehamilan teratur.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Edukasi Anemia End -->
+
+    <!-- Edukasi Buletin Tambahan Start -->
+    <!-- Edukasi Tambahan - Ringkasan Penting Start -->
+    <div class="container-fluid pb-5">
+      <div class="container pb-5">
+        <div
+          class="text-center mx-auto pb-5 wow fadeInUp"
+          data-wow-delay="0.2s"
+          style="max-width: 800px"
+        >
+          <h4 class="text-uppercase text-primary">Edukasi Anemia</h4>
+          <h1 class="display-4 text-capitalize mb-3">
+            Ringkasan Penting tentang Anemia pada Ibu Hamil
+          </h1>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <!-- Box 1: Penyebab Anemia -->
+          <div
+            class="col-md-6 col-lg-5 col-xl-4 wow fadeInUp"
+            data-wow-delay="0.2s"
+          >
+            <div class="bg-light p-4 rounded text-center h-100 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-virus-slash text-danger fa-3x fa-bounce"></i>
+              </div>
+              <h4 class="mb-2">Penyebab Anemia</h4>
+              <p class="small mb-0">
+                Anemia pada ibu hamil paling sering disebabkan oleh kekurangan
+                zat besi dalam makanan sehari-hari. Selain itu, kebutuhan zat
+                besi meningkat saat hamil, sehingga tanpa suplemen tambahan,
+                tubuh rentan mengalami anemia.
+              </p>
+            </div>
+          </div>
+
+          <!-- Box 2: Prevalensi -->
+          <div
+            class="col-md-6 col-lg-5 col-xl-4 wow fadeInUp"
+            data-wow-delay="0.4s"
+          >
+            <div class="bg-light p-4 rounded text-center h-100 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-chart-pie text-primary fa-3x fa-beat"></i>
+              </div>
+              <h4 class="mb-2">Anemia di Indonesia</h4>
+              <p class="small mb-0">
+                Berdasarkan data Kemenkes (2023), prevalensi anemia pada ibu
+                hamil di Indonesia mencapai <strong>37,1%</strong>. Ini
+                menunjukkan masih tingginya tantangan dalam pemenuhan gizi mikro
+                ibu hamil, terutama zat besi.
+              </p>
+            </div>
+          </div>
+
+          <!-- Box 3: Kesimpulan -->
+          <div
+            class="col-md-6 col-lg-5 col-xl-4 wow fadeInUp"
+            data-wow-delay="0.6s"
+          >
+            <div class="bg-light p-4 rounded text-center h-100 shadow-sm">
+              <div class="mb-3">
+                <i class="fas fa-notes-medical text-success fa-3x fa-fade"></i>
+              </div>
+              <h4 class="mb-2">Kesimpulan</h4>
+              <p class="small mb-0">
+                Ibu hamil dianjurkan mengonsumsi
+                <strong>90 tablet tambah darah</strong>
+                selama masa kehamilan untuk mencegah anemia. Langkah ini penting
+                untuk mendukung tumbuh kembang janin dan kesehatan ibu secara
+                menyeluruh.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Edukasi Tambahan - Ringkasan Penting End -->
+
+    <!-- Footer Start -->
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+      <div class="container py-5">
+        <div class="row g-5 mb-5">
+          <div class="col-lg-6">
+            <h3 class="text-white mb-4">
+              <i class="fas fa-heartbeat text-primary me-2"></i>Healthy Mom
+            </h3>
+            <p class="text-white">
+              Website ini dikembangkan sebagai media edukasi kesehatan ibu dan
+              remaja, dalam rangka penyusunan tugas akhir oleh mahasiswa:
+            </p>
+            <ul class="text-white ps-3">
+              <li>Riswanti Arosyid – Mahasiswi DIII Kebidanan</li>
+              <li>Mutiara – Mahasiswi DIII Kebidanan</li>
+            </ul>
+            <p class="text-white mb-0">
+              Website ini memuat informasi seputar anemia, konsumsi tablet FE,
+              serta edukasi metode alami, ditujukan untuk meningkatkan
+              pengetahuan masyarakat.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <h4 class="text-white mb-4">Informasi Kampus</h4>
+            <p class="mb-2 text-white">
+              <i class="fa fa-university me-2"></i>STIKes Widya Dharma Husada
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fa fa-map-marker-alt me-2"></i>Jl. H. Ibrahim No.40A,
+              Cibabat, Cimahi Utara, Kota Cimahi, Jawa Barat 40513
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fas fa-graduation-cap me-2"></i>Program Studi DIII
+              Kebidanan
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fa fa-envelope me-2"></i>info@stikeswdh.ac.id
+            </p>
+            <p class="mb-0 text-white">
+              <i class="fa fa-globe me-2"></i
+              ><a
+                href="https://stikeswdh.ac.id"
+                class="text-white"
+                target="_blank"
+                >www.stikeswdh.ac.id</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row text-white">
+          <div class="col-12 text-center">
+            <small>
+              Untuk pertanyaan lebih lanjut mengenai konten edukasi atau
+              kolaborasi, silakan hubungi tim pengembang melalui kontak yang
+              tersedia.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4 bg-dark">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-12 text-center">
+            <span class="text-white">
+              © 2025 <strong>Riswanti Arosyid</strong> &
+              <strong>Mutiara</strong> – Mahasiswi DIII Kebidanan <br />STIKes
+              Widya Dharma Husada, Cimahi – All rights reserved.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Copyright End -->
+
+    <!-- Back to Top -->
+    <a
+      href="#"
+      class="btn btn-secondary btn-lg-square rounded-circle back-to-top"
+      ><i class="fa fa-arrow-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script src="js/buletin.js"></script>
+  </body>
+</html>

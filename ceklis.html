@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <title>HealthyMom - Ceklis Konsumsi</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="img/favicon.ico" rel="icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header/Navbar Start -->
+    <div class="container-fluid position-relative p-0">
+      <!-- Navbar Start -->
+      <nav
+        class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+      >
+        <a href="index.html" class="navbar-brand p-0">
+          <h1 class="text-primary">
+            <i class="fas fa-heartbeat me-3"></i>HealthyMom
+          </h1>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+        >
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto py-0">
+            <a href="index.html" class="nav-item nav-link">Beranda</a>
+            <a href="buletin.html" class="nav-item nav-link">Buletin</a>
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle active"
+                data-bs-toggle="dropdown"
+              >
+                Kalender Tablet FE
+              </a>
+              <div class="dropdown-menu m-0">
+                <a href="ceklis.html" class="dropdown-item active"
+                  >Ceklis Konsumsi</a
+                >
+                <a href="kadarhb.html" class="dropdown-item"
+                  >Kadar Hemoglobin</a
+                >
+              </div>
+            </div>
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                Melody Motion
+              </a>
+              <div class="dropdown-menu m-0">
+                <a href="video.html" class="dropdown-item">Video</a>
+                <a href="riwayat.html" class="dropdown-item">Riwayat</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Greeting -->
+          <div id="user-greeting" class="d-none me-4" style="display: none">
+            <div class="d-flex flex-column pe-3 border-end border-primary">
+              <span class="text-body">Hai,</span>
+              <span class="text-primary" id="user-name">Nama User</span>
+            </div>
+          </div>
+
+          <!-- Auth Buttons -->
+          <div id="auth-buttons" class="d-flex align-items-center gap-2">
+            <a
+              href="#"
+              id="login-btn"
+              class="btn btn-primary rounded-pill py-2 px-4"
+              >Login</a
+            >
+            <a
+              href="#"
+              id="signup-btn"
+              class="btn btn-outline-primary rounded-pill py-2 px-4"
+              >Sign Up</a
+            >
+          </div>
+
+          <!-- Logout Button -->
+          <div id="logout-wrapper" class="d-none" style="display: none">
+            <button
+              id="logout-btn"
+              class="btn btn-outline-danger rounded-pill py-2 px-4"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <!-- Hero Image with Overlay -->
+      <div class="position-relative">
+        <img
+          src="img/pill.jpg"
+          class="img-fluid w-100"
+          alt="Header"
+          style="height: 300px; object-fit: cover"
+        />
+        <div
+          class="position-absolute top-0 start-0 w-100 h-100"
+          style="background-color: rgba(0, 0, 0, 0.5)"
+        ></div>
+        <div
+          class="position-absolute top-50 start-50 translate-middle text-center"
+        >
+          <h1
+            class="display-4 text-white fw-bold mb-4 fadeInDown animated"
+            style="padding-top: 90px"
+          >
+            Ceklis Konsumsi Tablet FE
+          </h1>
+          <p class="text-white fs-5 fadeInUp animated">
+            Yuk, pastikan kamu tak melewatkan jadwal konsumsi tablet tambah
+            darah hari ini!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header/Navbar End -->
+
+    <!-- Ceklis Tabs Start -->
+    <div class="container py-5">
+      <ul
+        class="nav nav-tabs justify-content-center"
+        id="ceklisTabs"
+        role="tablist"
+      >
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="jadwal-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#jadwal"
+            type="button"
+            role="tab"
+          >
+            Jadwal Konsumsi
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="upload-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#upload"
+            type="button"
+            role="tab"
+          >
+            Upload Bukti
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="riwayat-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#riwayat"
+            type="button"
+            role="tab"
+          >
+            Riwayat
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content pt-4" id="ceklisTabsContent">
+        <!-- Tab 1: Jadwal -->
+        <div class="tab-pane fade show active" id="jadwal" role="tabpanel">
+          <form id="form-jadwal">
+            <div class="row g-4 align-items-start">
+              <!-- Kolom Kiri: Kalender -->
+              <div class="col-md-6">
+                <label class="form-label">Tanggal Konsumsi</label>
+                <div id="inline-calendar"></div>
+              </div>
+
+              <!-- Kolom Kanan: Waktu & Tombol -->
+              <div
+                class="col-md-6 d-flex flex-column justify-content-between h-100"
+              >
+                <div class="mb-3">
+                  <label class="form-label">Waktu Konsumsi</label>
+                  <div id="inline-time"></div>
+                </div>
+                <div class="mt-auto">
+                  <button type="submit" class="btn btn-primary w-100">
+                    Simpan ke Google Calendar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tab 2: Upload -->
+        <div class="tab-pane fade" id="upload" role="tabpanel">
+          <form id="form-upload">
+            <div class="mb-3">
+              <label for="tanggal-upload" class="form-label"
+                >Pilih Jadwal Konsumsi</label
+              >
+              <select id="tanggal-upload" class="form-select" required>
+                <option value="">-- Pilih Tanggal & Waktu --</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="bukti-foto" class="form-label"
+                >Upload Foto Bukti</label
+              >
+              <input
+                type="file"
+                id="bukti-foto"
+                class="form-control"
+                accept="image/*"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Upload Bukti</button>
+          </form>
+        </div>
+
+        <!-- Tab 3: Riwayat -->
+        <div class="tab-pane fade" id="riwayat" role="tabpanel">
+          <div id="riwayat-list" class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="table-light">
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Waktu</th>
+                  <th>Status</th>
+                  <th>Bukti</th>
+                </tr>
+              </thead>
+              <tbody id="riwayat-body">
+                <!-- Diisi dinamis oleh ceklis.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Ceklis Tabs End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+      <div class="container py-5">
+        <div class="row g-5 mb-5">
+          <div class="col-lg-6">
+            <h3 class="text-white mb-4">
+              <i class="fas fa-heartbeat text-primary me-2"></i>Healthy Mom
+            </h3>
+            <p class="text-white">
+              Website ini dikembangkan sebagai media edukasi kesehatan ibu dan
+              remaja, dalam rangka penyusunan tugas akhir oleh mahasiswa:
+            </p>
+            <ul class="text-white ps-3">
+              <li>Riswanti Arosyid – Mahasiswi DIII Kebidanan</li>
+              <li>Mutiara – Mahasiswi DIII Kebidanan</li>
+            </ul>
+            <p class="text-white mb-0">
+              Website ini memuat informasi seputar anemia, konsumsi tablet FE,
+              serta edukasi metode alami, ditujukan untuk meningkatkan
+              pengetahuan masyarakat.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <h4 class="text-white mb-4">Informasi Kampus</h4>
+            <p class="mb-2 text-white">
+              <i class="fa fa-university me-2"></i>STIKes Widya Dharma Husada
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fa fa-map-marker-alt me-2"></i>Jl. H. Ibrahim No.40A,
+              Cibabat, Cimahi Utara, Kota Cimahi, Jawa Barat 40513
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fas fa-graduation-cap me-2"></i>Program Studi DIII
+              Kebidanan
+            </p>
+            <p class="mb-2 text-white">
+              <i class="fa fa-envelope me-2"></i>info@stikeswdh.ac.id
+            </p>
+            <p class="mb-0 text-white">
+              <i class="fa fa-globe me-2"></i
+              ><a
+                href="https://stikeswdh.ac.id"
+                class="text-white"
+                target="_blank"
+                >www.stikeswdh.ac.id</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row text-white">
+          <div class="col-12 text-center">
+            <small>
+              Untuk pertanyaan lebih lanjut mengenai konten edukasi atau
+              kolaborasi, silakan hubungi tim pengembang melalui kontak yang
+              tersedia.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4 bg-dark">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-12 text-center">
+            <span class="text-white">
+              © 2025 <strong>Riswanti Arosyid</strong> &
+              <strong>Mutiara</strong> – Mahasiswi DIII Kebidanan <br />STIKes
+              Widya Dharma Husada, Cimahi – All rights reserved.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Flatpickr untuk Kalender dan Waktu -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- Script Khusus Login dan Jadwal -->
+    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/ceklis.js"></script>
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </body>
+</html>
