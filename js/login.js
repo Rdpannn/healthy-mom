@@ -1,6 +1,6 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-// Ganti dengan URL live secara otomatis (support localhost dan GitHub Pages)
+// Ganti dengan URL live secara otomatis
 const REDIRECT_URL = "https://rdpannn.github.io/healthy-mom/";
 
 const supabase = createClient(
@@ -13,22 +13,30 @@ function updateUI(user) {
   const userName = document.getElementById("user-name");
   const authButtons = document.getElementById("auth-buttons");
   const logoutBtn = document.getElementById("logout-wrapper");
+  const heroButtons = document.getElementById("hero-auth-buttons");
 
   if (user) {
     const displayName =
       user.user_metadata?.full_name || user.email || "Pengguna";
     userName.textContent = displayName;
+
     greeting.classList.remove("d-none");
     greeting.style.display = "flex";
     authButtons.classList.add("d-none");
     logoutBtn.classList.remove("d-none");
     logoutBtn.style.display = "block";
+
+    // Sembunyikan tombol di hero juga
+    if (heroButtons) heroButtons.style.display = "none";
   } else {
     greeting.classList.add("d-none");
     greeting.style.display = "none";
     authButtons.classList.remove("d-none");
     logoutBtn.classList.add("d-none");
     logoutBtn.style.display = "none";
+
+    // Tampilkan tombol di hero kalau belum login
+    if (heroButtons) heroButtons.style.display = "flex";
   }
 }
 
@@ -45,24 +53,21 @@ supabase.auth.onAuthStateChange((event, session) => {
   else if (event === "SIGNED_OUT") updateUI(null);
 });
 
-document.getElementById("login-btn")?.addEventListener("click", async () => {
-  await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: REDIRECT_URL,
-    },
-  });
-});
+// Group semua tombol login/sign-up
+["login-btn", "signup-btn", "login-btn-hero", "signup-btn-hero"].forEach(
+  (id) => {
+    document.getElementById(id)?.addEventListener("click", async () => {
+      await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: REDIRECT_URL,
+        },
+      });
+    });
+  }
+);
 
-document.getElementById("signup-btn")?.addEventListener("click", async () => {
-  await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: {
-      redirectTo: REDIRECT_URL,
-    },
-  });
-});
-
+// Tombol logout
 document.getElementById("logout-btn")?.addEventListener("click", async () => {
   await supabase.auth.signOut();
 });
