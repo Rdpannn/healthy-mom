@@ -48,10 +48,11 @@ supabase.auth.onAuthStateChange((event, session) => {
 });
 
 // Tombol Login
-document.getElementById("login-btn")?.addEventListener("click", async () => {
-  await supabase.auth.signInWithOAuth({
-    provider: "google",
-  });
+await supabase.auth.signInWithOAuth({
+  provider: "google",
+  options: {
+    redirectTo: "https://rdpannn.github.io/healthy-mom/index.html",
+  },
 });
 
 // Tombol Sign Up
