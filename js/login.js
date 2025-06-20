@@ -51,7 +51,7 @@ supabase.auth.onAuthStateChange((event, session) => {
 await supabase.auth.signInWithOAuth({
   provider: "google",
   options: {
-    redirectTo: "https://rdpannn.github.io/healthy-mom/index.html",
+    redirectTo: "https://rdpannn.github.io/healthy-mom/",
   },
 });
 
@@ -64,7 +64,12 @@ document.getElementById("signup-btn")?.addEventListener("click", async () => {
 
 // Tombol Logout
 document.getElementById("logout-btn")?.addEventListener("click", async () => {
-  await supabase.auth.signOut();
+  await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: "https://rdpannn.github.io/healthy-mom/",
+    },
+  });
 });
 
 // Jalankan saat halaman dibuka
