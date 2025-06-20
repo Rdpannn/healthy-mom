@@ -13,7 +13,12 @@ function updateUI(user) {
   const userName = document.getElementById("user-name");
   const authButtons = document.getElementById("auth-buttons");
   const logoutBtn = document.getElementById("logout-wrapper");
-  const heroButtons = document.getElementById("hero-auth-buttons");
+
+  // Tambahkan semua hero auth button containers
+  const heroButtons = [
+    document.getElementById("hero-auth-buttons"),
+    document.getElementById("hero-auth-buttons-2"),
+  ];
 
   if (user) {
     const displayName =
@@ -26,8 +31,8 @@ function updateUI(user) {
     logoutBtn.classList.remove("d-none");
     logoutBtn.style.display = "block";
 
-    // Sembunyikan tombol di hero juga
-    if (heroButtons) heroButtons.style.display = "none";
+    // Sembunyikan semua hero buttons
+    heroButtons.forEach((el) => el && (el.style.display = "none"));
   } else {
     greeting.classList.add("d-none");
     greeting.style.display = "none";
@@ -35,8 +40,8 @@ function updateUI(user) {
     logoutBtn.classList.add("d-none");
     logoutBtn.style.display = "none";
 
-    // Tampilkan tombol di hero kalau belum login
-    if (heroButtons) heroButtons.style.display = "flex";
+    // Tampilkan semua hero buttons
+    heroButtons.forEach((el) => el && (el.style.display = "flex"));
   }
 }
 
