@@ -1,6 +1,6 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-// Ganti dengan URL live secara otomatis
+// Ganti dengan URL live GitHub Pages
 const REDIRECT_URL = "https://rdpannn.github.io/healthy-mom/";
 
 const supabase = createClient(
@@ -14,7 +14,7 @@ function updateUI(user) {
   const authButtons = document.getElementById("auth-buttons");
   const logoutBtn = document.getElementById("logout-wrapper");
 
-  // Tambahkan semua hero auth button containers
+  // Tambahkan semua hero button containers (slide 1 & slide 2)
   const heroButtons = [
     document.getElementById("hero-auth-buttons"),
     document.getElementById("hero-auth-buttons-2"),
@@ -31,7 +31,7 @@ function updateUI(user) {
     logoutBtn.classList.remove("d-none");
     logoutBtn.style.display = "block";
 
-    // Sembunyikan semua hero buttons
+    // Sembunyikan semua tombol hero
     heroButtons.forEach((el) => el && (el.style.display = "none"));
   } else {
     greeting.classList.add("d-none");
@@ -40,7 +40,7 @@ function updateUI(user) {
     logoutBtn.classList.add("d-none");
     logoutBtn.style.display = "none";
 
-    // Tampilkan semua hero buttons
+    // Tampilkan tombol hero kalau belum login
     heroButtons.forEach((el) => el && (el.style.display = "flex"));
   }
 }
@@ -53,28 +53,35 @@ async function checkAuth() {
   updateUI(user);
 }
 
+// Listener perubahan status auth
 supabase.auth.onAuthStateChange((event, session) => {
   if (event === "SIGNED_IN") updateUI(session?.user);
   else if (event === "SIGNED_OUT") updateUI(null);
 });
 
-// Group semua tombol login/sign-up
-["login-btn", "signup-btn", "login-btn-hero", "signup-btn-hero"].forEach(
-  (id) => {
-    document.getElementById(id)?.addEventListener("click", async () => {
-      await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: REDIRECT_URL,
-        },
-      });
+// Semua tombol login/sign-up (navbar dan hero)
+[
+  "login-btn",
+  "signup-btn",
+  "login-btn-hero",
+  "signup-btn-hero",
+  "login-btn-hero-2",
+  "signup-btn-hero-2",
+].forEach((id) => {
+  document.getElementById(id)?.addEventListener("click", async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: REDIRECT_URL,
+      },
     });
-  }
-);
+  });
+});
 
 // Tombol logout
 document.getElementById("logout-btn")?.addEventListener("click", async () => {
   await supabase.auth.signOut();
 });
 
+// Jalankan saat halaman dimuat
 checkAuth();
