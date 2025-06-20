@@ -14,7 +14,7 @@ function updateUI(user) {
   const authButtons = document.getElementById("auth-buttons");
   const logoutBtn = document.getElementById("logout-wrapper");
 
-  // Get all hero button containers (for both slides)
+  // Tambahkan semua hero button containers (slide 1 & slide 2)
   const heroButtons = [
     document.getElementById("hero-auth-buttons"),
     document.getElementById("hero-auth-buttons-2"),
@@ -31,7 +31,7 @@ function updateUI(user) {
     logoutBtn.classList.remove("d-none");
     logoutBtn.style.display = "block";
 
-    // Hide all hero buttons
+    // Sembunyikan semua tombol hero
     heroButtons.forEach((el) => el && (el.style.display = "none"));
   } else {
     greeting.classList.add("d-none");
@@ -40,10 +40,11 @@ function updateUI(user) {
     logoutBtn.classList.add("d-none");
     logoutBtn.style.display = "none";
 
-    // Show hero buttons if not logged in
+    // Tampilkan tombol hero kalau belum login
     heroButtons.forEach((el) => el && (el.style.display = "flex"));
   }
 }
+
 async function checkAuth() {
   await supabase.auth.getSession();
   const {
@@ -58,7 +59,7 @@ supabase.auth.onAuthStateChange((event, session) => {
   else if (event === "SIGNED_OUT") updateUI(null);
 });
 
-// All login/sign-up buttons (navbar and hero)
+// Semua tombol login/sign-up (navbar dan hero)
 [
   "login-btn",
   "signup-btn",
