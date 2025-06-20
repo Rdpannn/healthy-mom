@@ -1,11 +1,12 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+// Ganti dengan URL live secara otomatis (support localhost dan GitHub Pages)
+const REDIRECT_URL = window.location.origin + window.location.pathname;
+
 const supabase = createClient(
   "https://qfxrlwnkvuyiaggftxgx.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmeHJsd25rdnV5aWFnZ2Z0eGd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAzMzg5OTAsImV4cCI6MjA2NTkxNDk5MH0.oBQy2vxIdwaiM7QuDk0iFnYYhwx4iqFe3476ed3lw_E"
 );
-
-const REDIRECT_URL = "https://rdpannn.github.io/healthy-mom/";
 
 function updateUI(user) {
   const greeting = document.getElementById("user-greeting");
@@ -32,20 +33,18 @@ function updateUI(user) {
 }
 
 async function checkAuth() {
-  await supabase.auth.getSession(); // memastikan session ke-load dulu
+  await supabase.auth.getSession();
   const {
     data: { user },
   } = await supabase.auth.getUser();
   updateUI(user);
 }
 
-// auth state listener (aman dari looping)
 supabase.auth.onAuthStateChange((event, session) => {
   if (event === "SIGNED_IN") updateUI(session?.user);
   else if (event === "SIGNED_OUT") updateUI(null);
 });
 
-// PENTING: hanya login jika tombol ditekan!
 document.getElementById("login-btn")?.addEventListener("click", async () => {
   await supabase.auth.signInWithOAuth({
     provider: "google",
