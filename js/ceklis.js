@@ -12,7 +12,6 @@ let selectedTime = null;
 
 // Inisialisasi Flatpickr
 document.addEventListener("DOMContentLoaded", () => {
-  // Kalender
   flatpickr("#inline-calendar", {
     inline: true,
     defaultDate: "today",
@@ -27,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  // Time picker
   flatpickr("#inline-time", {
     enableTime: true,
     noCalendar: true,
@@ -46,15 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  const today = new Date().toISOString().split("T")[0];
+  const inputTanggal = document.getElementById("tanggal-hari-ini");
+  if (inputTanggal) inputTanggal.value = today;
+
   loadRiwayat();
 });
 
 function checkFormValidity() {
   const btn = document.querySelector('#form-jadwal button[type="submit"]');
-  btn.disabled = !(selectedDate && selectedTime);
+  if (btn) {
+    btn.disabled = !(selectedDate && selectedTime);
+  }
 }
 
-// Simpan ke Supabase & Google Calendar
+// Simpan ke Supabase & buka Google Calendar manual
 document.getElementById("form-jadwal").addEventListener("submit", async (e) => {
   e.preventDefault();
   const {
@@ -95,42 +99,7 @@ document.getElementById("form-jadwal").addEventListener("submit", async (e) => {
   alert("Jadwal berhasil dibuat. Semangat, Bunda! 💪");
 });
 
-// Dropdown Jadwal Konsumsi
-async function loadPilihanJadwal() {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return;
-
-  const { data, error } = await supabase
-    .from("jadwal_konsumsi")
-    .select("*")
-    .eq("user_email", user.email)
-    .is("bukti_url", null)
-    .order("tanggal", { ascending: false });
-
-  const select = document.getElementById("tanggal-upload");
-  select.innerHTML = '<option value="">-- Pilih Tanggal & Waktu --</option>';
-
-  if (error) return console.error("Error loading jadwal:", error);
-  if (data.length === 0) {
-    const option = document.createElement("option");
-    option.textContent = "Tidak ada jadwal yang perlu diupload";
-    option.disabled = true;
-    select.appendChild(option);
-    return;
-  }
-
-  for (const item of data) {
-    const option = document.createElement("option");
-    option.value = item.tanggal;
-    option.setAttribute("data-waktu", item.waktu);
-    option.textContent = `${item.tanggal} - ${item.waktu}`;
-    select.appendChild(option);
-  }
-}
-
-// Upload Bukti
+// Upload bukti foto konsumsi hari ini (tanpa pilih jadwal)
 document.getElementById("form-upload").addEventListener("submit", async (e) => {
   e.preventDefault();
   const {
@@ -138,12 +107,29 @@ document.getElementById("form-upload").addEventListener("submit", async (e) => {
   } = await supabase.auth.getUser();
   if (!user) return alert("Silakan login terlebih dahulu.");
 
-  const select = document.getElementById("tanggal-upload");
-  const tanggal = select.value;
-  const waktu =
-    select.options[select.selectedIndex]?.getAttribute("data-waktu");
+  const today = new Date().toISOString().split("T")[0];
+  const waktuSekarang = new Date().toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 
-  if (!tanggal || !waktu) return alert("Pilih jadwal terlebih dahulu.");
+  // Cek apakah sudah pernah upload hari ini
+  const { data: existing, error: checkError } = await supabase
+    .from("jadwal_konsumsi")
+    .select("*")
+    .eq("user_email", user.email)
+    .eq("tanggal", today)
+    .not("bukti_url", "is", null)
+    .limit(1);
+
+  if (checkError) return alert("Gagal cek data: " + checkError.message);
+  if (existing.length > 0) {
+    return alert(
+      "Kamu sudah upload bukti konsumsi hari ini. Silakan kembali besok 😊"
+    );
+  }
+
   const file = document.getElementById("bukti-foto").files[0];
   if (!file) return alert("Pilih foto terlebih dahulu.");
 
@@ -163,21 +149,36 @@ document.getElementById("form-upload").addEventListener("submit", async (e) => {
       data: { publicUrl },
     } = supabase.storage.from("fotokonsumsi").getPublicUrl(filename);
 
-    const { error: updateError } = await supabase
+    const { data: existingRow, error: rowError } = await supabase
       .from("jadwal_konsumsi")
-      .update({
+      .select("*")
+      .eq("user_email", user.email)
+      .eq("tanggal", today)
+      .limit(1);
+
+    if (rowError) throw rowError;
+
+    if (existingRow.length > 0) {
+      await supabase
+        .from("jadwal_konsumsi")
+        .update({
+          status: "Terkonfirmasi",
+          bukti_url: publicUrl,
+        })
+        .eq("user_email", user.email)
+        .eq("tanggal", today);
+    } else {
+      await supabase.from("jadwal_konsumsi").insert({
+        user_email: user.email,
+        tanggal: today,
+        waktu: waktuSekarang,
         status: "Terkonfirmasi",
         bukti_url: publicUrl,
-      })
-      .eq("user_email", user.email)
-      .eq("tanggal", tanggal)
-      .eq("waktu", waktu);
+      });
+    }
 
-    if (updateError) throw updateError;
-
-    alert("Foto berhasil diupload sebagai bukti!");
+    alert("Foto berhasil diupload sebagai bukti konsumsi hari ini!");
     document.getElementById("form-upload").reset();
-    loadPilihanJadwal();
     loadRiwayat();
   } catch (error) {
     console.error("Upload error:", error);
@@ -185,7 +186,7 @@ document.getElementById("form-upload").addEventListener("submit", async (e) => {
   }
 });
 
-// Riwayat Konsumsi
+// Load Riwayat Konsumsi
 async function loadRiwayat() {
   const {
     data: { user },
@@ -238,8 +239,5 @@ async function loadRiwayat() {
   }
 }
 
-// Tab Switching
-document
-  .getElementById("upload-tab")
-  .addEventListener("click", loadPilihanJadwal);
+// Tab switching
 document.getElementById("riwayat-tab").addEventListener("click", loadRiwayat);
