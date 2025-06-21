@@ -7,42 +7,61 @@ const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmeHJsd25rdnV5aWFnZ2Z0eGd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAzMzg5OTAsImV4cCI6MjA2NTkxNDk5MH0.oBQy2vxIdwaiM7QuDk0iFnYYhwx4iqFe3476ed3lw_E";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Wait for DOM and auth to be ready
+let selectedDate = null;
+
 document.addEventListener("DOMContentLoaded", async function () {
-  // Initialize calendar
+  // Inisialisasi kalender
   initCalendar();
 
-  // Check auth state and load data
+  // Setup tombol video
+  setupVideoModal();
+
+  // Cek user login
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (user) {
-    // User is logged in, load their history
     await loadRiwayatMelody();
-
-    // Set up form submission
     setupUploadForm();
   } else {
-    // User not logged in, show message
     const tbody = document.getElementById("melody-riwayat-body");
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="2" class="text-center py-4">
-          <div class="alert alert-warning">
-            Silakan <a href="#" id="login-link" class="alert-link">login</a> untuk melihat riwayat.
-          </div>
-        </td>
-      </tr>
-    `;
-
-    // Add login link handler
-    document.getElementById("login-link")?.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.location.href = "login.html";
-    });
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="2" class="text-center py-4">
+            <div class="alert alert-warning">
+              Silakan <a href="#" id="login-link" class="alert-link">login</a> untuk melihat riwayat.
+            </div>
+          </td>
+        </tr>
+      `;
+      document.getElementById("login-link")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "login.html";
+      });
+    }
   }
 });
+
+function setupVideoModal() {
+  const playBtn = document.getElementById("play-video-btn");
+  const videoModalEl = document.getElementById("video-modal");
+  const videoModal = new bootstrap.Modal(videoModalEl);
+  const video = document.getElementById("educational-video");
+
+  if (playBtn) {
+    playBtn.addEventListener("click", () => {
+      videoModal.show();
+      setTimeout(() => video?.play(), 300); // Delay kecil agar modal sempat terbuka
+    });
+  }
+
+  videoModalEl?.addEventListener("hidden.bs.modal", () => {
+    video?.pause();
+    video.currentTime = 0;
+  });
+}
 
 function setupUploadForm() {
   document
@@ -69,19 +88,16 @@ async function handleUpload() {
     const fileExt = file.name.split(".").pop();
     const fileName = `melody_${user.id}_${Date.now()}.${fileExt}`;
 
-    // Upload file
     const { error: uploadError } = await supabase.storage
       .from("fotovideo")
       .upload(fileName, file);
 
     if (uploadError) throw uploadError;
 
-    // Get public URL
     const {
       data: { publicUrl },
     } = supabase.storage.from("fotovideo").getPublicUrl(fileName);
 
-    // Save to database
     const { error: dbError } = await supabase.from("riwayat_video").insert({
       user_email: user.email,
       tanggal: selectedDate || new Date().toISOString().split("T")[0],
@@ -98,8 +114,6 @@ async function handleUpload() {
     alert(`Gagal upload: ${error.message}`);
   }
 }
-
-let selectedDate = null;
 
 function initCalendar() {
   const calendarEl = document.getElementById("calendar-upload");
@@ -123,7 +137,6 @@ async function loadRiwayatMelody() {
     const tbody = document.getElementById("melody-riwayat-body");
     if (!tbody) return;
 
-    // Show loading state
     tbody.innerHTML = `
       <tr>
         <td colspan="2" class="text-center py-4">
@@ -160,13 +173,9 @@ async function loadRiwayatMelody() {
       return;
     }
 
-    // Build table rows
     let rowsHTML = "";
     for (const item of data) {
-      // Extract filename from URL if needed
       let imageUrl = item.bukti_foto;
-
-      // If URL doesn't start with http, assume it's just a filename
       if (!imageUrl.startsWith("http")) {
         const {
           data: { publicUrl },
